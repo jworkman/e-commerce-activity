@@ -1,0 +1,48 @@
+{% extends 'layouts/base.twig' %}
+
+{% block title %}All Products{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="/public/product-grid.css">
+{% endblock %}
+
+{% block main_content %}
+	<main class="container">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+		<div class="container">
+		    <h3 class="h3">E-Commerce Shop Demonstration</h3>
+		    <hr />
+		    <div id="products-container" class="row">
+		    	{% for product in products %}
+			        <div class="col-md-3 col-sm-6">
+			            <div class="product-grid3">
+			                <div class="product-image3">
+			                    <a href="/store/products/{{ product.slug }}">
+			                    	{% for variant in product.Variants %}
+			                    		{% set loopIndex = loop.index %}
+			                    		{% for image in variant.Images %}
+			                    			<img class="pic-{{ loopIndex }}" src="/public/images/{{ image.id }}{{ image.extension }}">
+			                    		{% endfor %}		
+			                    	{% endfor %}
+			                    </a>
+			                    <ul class="social">
+			                        <li><a href="#"><i class="fa fa-shopping-bag"></i></a></li>
+			                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+			                    </ul>
+			                    <span class="product-new-label">New</span>
+			                </div>
+			                <div class="product-content">
+			                    <h3 class="title"><a href="#">{{ product.title }}</a></h3>
+			                    <div class="price">
+			                        ${{ product.price }}
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+		    	{% endfor %}
+		    </div>
+		</div>
+	</main>
+{% endblock %}

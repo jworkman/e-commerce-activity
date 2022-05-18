@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  mariadb:
+    image: mariadb
+    restart: always
+    networks: 
+      - asl
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+  node:
+    image: "node:16"
+    user: "node"
+    working_dir: /home/node/app
+    networks:
+      - asl
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - "3000:3000"
+    # command: "npm install & npm run watch"
+    command: >
+      sh -c "rm -rf node_modules &&
+             npm install &&
+             npm run watch"
+    restart: always
+    stdin_open: true
+    tty: true
+    depends_on:
+      - mariadb
+
+networks:
+  asl:

@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "root",
+    "database": "dev_asl",
+    "host": "mariadb",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "root",
+    "database": "dev_asl",
+    "host": "mariadb",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "root",
+    "database": "dev_asl",
+    "host": "mariadb",
+    "dialect": "mysql"
+  }
+}

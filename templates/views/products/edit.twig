@@ -1,0 +1,5 @@
+{% extends 'layouts/base.twig' %}
+
+{% block main_content %}
+	{% include 'views/products/_form.twig' with { 'product': product } %}
+{% endblock %}

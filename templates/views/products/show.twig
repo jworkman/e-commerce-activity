@@ -1,0 +1,29 @@
+{% extends 'layouts/base.twig' %}
+
+{% block main_content %}
+	<h2>About {{ product.title }}</h2>
+	<ul style="list-style: none;">
+		<li>
+			<label><strong>Id:</strong> </label> {{ product.id }}
+		</li>
+		<li>
+			<label><strong>Title:</strong> </label> {{ product.title }}
+		</li>
+		<li>
+			<label><strong>URL Slug:</strong> </label> {{ product.slug }}
+		</li>
+		<li>
+			<label><strong>Price:</strong> </label> {{ product.price }}
+		</li>
+		<li>
+			<label><strong>Is Published:</strong> </label> {{ product.is_published }}
+		</li>
+		<li>
+			<label><strong>Description:</strong> </label>
+			<p style="max-width: 500px;"><em>{{ product.description|raw }}</em></p>
+		</li>
+	</ul>
+	<p>
+		<a href="/products/{{ product.id }}/edit">Edit</a> | <a href="/products/{{ product.id }}/delete">Delete</a>
+	</p>
+{% endblock %}

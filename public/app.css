@@ -1,0 +1,14 @@
+body{
+	background:#eee;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width:  100%;
+}
+
+footer p {
+	width:  100%;
+	text-align: center;
+}

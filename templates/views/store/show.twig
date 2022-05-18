@@ -1,0 +1,79 @@
+{% extends 'layouts/base.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="/public/product-page.css">
+{% endblock %}
+
+{% block title %}{{ product.title }} - {{ variant.title }}{% endblock %}
+
+{% block main_content %}
+	<main class="container">
+		<div class="container bootdey">
+			<div class="col-md-12">
+				<section class="panel">
+					<div class="panel-body">
+						<div class="col-md-6">
+							{% set defaultImage = variant.Images[0] %}
+							<div class="pro-img-details">
+								<img src="/public/images/{{ defaultImage.id }}{{ defaultImage.extension }}" />
+							</div>
+							<div class="pro-img-list">
+								{% for image in variant.Images %}
+									<a href="#">
+										<img src="/public/images/{{ image.id }}{{ image.extension }}" alt="">
+									</a>
+								{% endfor %}
+							</div>
+						</div>
+						<div class="col-md-6">
+							<h4 class="pro-d-title">
+								<a href="#" class="">
+									{{ product.title }} - {{ variant.title }}
+								</a>
+							</h4>
+							<p>
+								{{ variant.description|raw }}
+							</p>
+							<h4>Options:</h4>
+							<p>
+								{% for option in product.Variants %}
+									{% if option.id == variant.id %}
+										{{ option.title }}
+									{% else %}
+										<a href="/store/products/{{ product.slug }}?v={{ option.slug }}">{{ option.title }}</a>
+									{% endif %}
+								{% endfor %}
+							</p>
+							<div class="m-bot15">
+								<strong>Price : </strong>
+								<span class="pro-price">${{ variant.price }}</span>
+							</div>
+							<div class="m-bot15">
+								<strong>In Stock : </strong>
+								<span>
+									{% if variant.inventory < 10 %}
+										Almost Sold Out!
+									{% elseif variant.inventory == 0 %}
+										Not in Stock
+									{% else %}
+										In Stock
+									{% endif %}
+								</span>
+							</div>
+							<div class="form-group">
+								<label>Quantity</label>
+								<input type="quantiy" placeholder="1" class="form-control quantity">
+							</div>
+							<p>
+								<button class="btn btn-round btn-danger" type="button">
+									<i class="fa fa-shopping-cart"></i> Add to Cart
+								</button>
+							</p>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</main>
+{% endblock %}
